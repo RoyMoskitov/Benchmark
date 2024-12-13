@@ -82,6 +82,22 @@
     </properties>
 
     <dependencies>
+
+        <!-- JMH Core -->
+<!--        <dependency>-->
+<!--            <groupId>org.openjdk.jmh</groupId>-->
+<!--            <artifactId>jmh-core</artifactId>-->
+<!--            <version>1.37</version> &lt;!&ndash; Убедитесь, что используете последнюю версию &ndash;&gt;-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; JMH Annotation Processor &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.openjdk.jmh</groupId>-->
+<!--            <artifactId>jmh-generator-annprocess</artifactId>-->
+<!--            <version>1.37</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+
         <!-- Core -->
         <dependency>
             <groupId>org.jspecify</groupId>
@@ -422,6 +438,53 @@
 
     <build>
         <plugins>
+
+
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>run-benchmarks</id>-->
+<!--                        <phase>integration-test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <classpathScope>test</classpathScope>-->
+<!--                            <executable>java</executable>-->
+<!--                            <arguments>-->
+<!--                                <argument>-classpath</argument>-->
+<!--                                <classpath />-->
+<!--                                <argument>org.openjdk.jmh.Main</argument>-->
+<!--                                <argument>.*</argument>-->
+<!--                            </arguments>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+
+<!--            &lt;!&ndash; Maven Shade Plugin для JMH &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-shade-plugin</artifactId>-->
+<!--                <version>3.4.1</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>shade</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <transformers>-->
+<!--                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>-->
+<!--                            </transformers>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -490,6 +553,12 @@
                                 <artifactId>lombok</artifactId>
                                 <version>${lombok.version}</version>
                             </path>
+                            <path>
+                                <groupId>org.openjdk.jmh</groupId>
+                                <artifactId>jmh-generator-annprocess</artifactId>
+                                <version>1.35</version>
+                            </path>
+
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
